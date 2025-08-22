@@ -1,3 +1,7 @@
+/* Ensure hamburger hidden on desktop */
+@media (min-width: 961px){
+  .nav-toggle{display:none !important}
+}
 /* Theme tokens */
 :root{
   --color-primary:#724b3a;
@@ -26,6 +30,8 @@ body{
   margin:0; background:var(--bg); color:var(--text);
   font-family:var(--body); letter-spacing:var(--ls); font-weight:var(--body-weight);
 }
+/* Prevent background scroll when mobile menu is open */
+body.no-scroll{overflow:hidden; position:fixed; width:100%; left:0; right:0; overscroll-behavior:none}
 img{max-width:100%; display:block}
 a{color:inherit; text-decoration:none}
 
@@ -48,6 +54,18 @@ a{color:inherit; text-decoration:none}
 .site-nav a:hover{background:rgba(114,75,58,0.08)}
 
 .nav-toggle{display:none; border:0; background:transparent; font-size:22px}
+/* Enhanced mobile nav toggle */
+.nav-toggle{cursor:pointer; color:#3a2a23; width:40px; height:40px; border-radius:10px}
+.nav-toggle:hover{background:rgba(114,75,58,0.08)}
+.nav-toggle:focus-visible{outline:2px solid rgba(114,75,58,0.45); outline-offset:2px}
+.nav-toggle .icon-close{display:none}
+.nav-toggle[aria-expanded="true"] .icon-menu{display:none}
+.nav-toggle[aria-expanded="true"] .icon-close{display:inline}
+.nav-toggle[aria-expanded="true"] .icon-menu{display:none}
+.nav-toggle[aria-expanded="false"] .icon-close{display:none}
+.nav-toggle[aria-expanded="false"] .icon-menu{display:inline}
+.nav-toggle{z-index:4000 !important}
+
 
 /* Hero */
 .hero{position:relative; padding:64px 0; background:linear-gradient(0deg, rgba(114,75,58,0.06), rgba(114,75,58,0.06)), var(--bg)}
@@ -70,9 +88,13 @@ a{color:inherit; text-decoration:none}
 .hero-gallery img{width:32%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; box-shadow:var(--shadow); border:1px solid rgba(201,162,122,0.35); background:#fff}
 
 /* Cards & grids */
-.features-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px}
+.features-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; max-width:980px; margin:0 auto; justify-content:center}
 .feature-card{background:var(--surface); border:1px solid rgba(201,162,122,0.35); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
 .feature-card .icon{font-size:22px; width:40px; height:40px; display:grid; place-items:center; background:#f2e7de; border-radius:10px; color:var(--primary)}
+/* Ensure inline SVG inside feature icon scales well */
+.feature-card .icon svg{width:22px; height:22px; display:block}
+/* Ensure img (Halal Indonesia logo) scales well */
+.feature-card .icon img{width:22px; height:22px; object-fit:contain; display:block}
 
 .products-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
 .product-card{background:var(--surface); border:1px solid rgba(201,162,122,0.35); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
@@ -87,6 +109,15 @@ a{color:inherit; text-decoration:none}
 /* Center title and disclaimer for benefits section */
 #manfaat h2{text-align:center}
 #manfaat .disclaimer{text-align:center}
+/* Center title for features section */
+#unggulan h2{text-align:center}
+
+/* Center for products and steps */
+#produk h2,
+#cara-seduh h2,
+#cara-seduh .section-subtitle {
+  text-align: center;
+}
 
 .steps{list-style:none; padding:0; margin:22px 0; display:grid; gap:12px}
 .steps li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:14px}
@@ -98,9 +129,23 @@ a{color:inherit; text-decoration:none}
 
 /* Center testimonials title */
 #ulasan h2{text-align:center}
+#faq h2{text-align:center;}
 
-.faq details{background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:14px 16px; margin-bottom:10px}
+.faq details{background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:14px 16px; margin-bottom:10px; overflow:hidden; transition:box-shadow .2s;}
 .faq summary{cursor:pointer; font-weight:600}
+
+.faq details[open] { box-shadow:0 4px 18px -8px #c9a27a33; }
+.faq details > *:not(summary) {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity .3s, max-height .4s cubic-bezier(.4,1.6,.4,1);
+  will-change:opacity,max-height;
+}
+.faq details[open] > *:not(summary) {
+  opacity: 1;
+  max-height: 300px;
+  transition: opacity .3s .05s, max-height .4s cubic-bezier(.4,1.6,.4,1);
+}
 
 /* Buttons */
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border-radius:999px; border:1.5px solid transparent; transition:all .2s ease; font-weight:600}
@@ -112,6 +157,9 @@ a{color:inherit; text-decoration:none}
 
 /* CTA banner */
 .section.cta{background:linear-gradient(180deg, rgba(201,162,122,0.15), rgba(201,162,122,0.08))}
+/* Center CTA content and buttons */
+.section.cta .container{ text-align:center; }
+.section.cta .hero-ctas{ justify-content:center; }
 
 /* Footer */
 .site-footer{background:#efe6dd; padding:28px 0 16px; color:#3a2a23}
@@ -135,13 +183,71 @@ a{color:inherit; text-decoration:none}
   .products-grid{grid-template-columns:1fr}
   .benefits-grid{grid-template-columns:repeat(2,1fr)}
   .testimonials{grid-template-columns:1fr}
-  .nav-toggle{display:block}
-  .site-nav{position:absolute; top:100%; right:0; background:#fff; border:1px solid rgba(201,162,122,0.35); border-radius:12px; padding:10px; display:none}
-  .site-nav.open{display:block}
-  .site-nav ul{flex-direction:column; align-items:stretch}
-  .site-nav a{padding:10px 14px}
+  .site-header{position:sticky; top:0; z-index:50;}
+  /* Keep toggle inside header when menu closed; fixed only when open */
+  .nav-toggle{
+    display:grid; place-items:center; position:absolute; width:44px; height:44px; border-radius:999px; top:6px; right:16px; bottom:auto; z-index:4000 !important; background:transparent; box-shadow:none; border:none; pointer-events:auto; margin-top:0;
+  }
+  .nav-toggle[aria-expanded="true"]{
+    position:fixed;
+    top:calc(6px + env(safe-area-inset-top));
+    right:calc(16px + env(safe-area-inset-right));
+    left:auto;
+    margin-top:0;
+  }
+  .nav-toggle[aria-expanded="true"]{
+    position:fixed;
+    top:calc(6px + env(safe-area-inset-top));
+    right:calc(16px + env(safe-area-inset-right));
+    left:auto;
+    margin-top:0;
+  }
+
+  /* Fullscreen overlay menu with animation */
+  .site-nav{position:fixed; inset:0; background:transparent; display:none; align-items:center; justify-content:center; z-index:1500; padding:calc(80px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom)); opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-8px); transition:opacity .25s ease, transform .25s ease, visibility 0s linear .25s; height:100vh; height:100dvh; height:100svh; min-height:100vh; overflow:auto; backface-visibility:hidden; -webkit-font-smoothing:antialiased}
+  .site-nav.open{display:flex; opacity:1; visibility:visible; pointer-events:auto; transform:none; transition:opacity .25s ease, transform .25s ease; height:100vh; height:100dvh; height:100svh; min-height:100vh}
+  .site-nav ul{flex-direction:column; align-items:center; gap:28px}
+  .site-nav a{padding:10px 14px; font-size:20px; font-weight:600; color:#3a2a23}
+  /* Stagger items */
+  .site-nav.open li{animation:fadeUp .24s ease both}
+  .site-nav.open li:nth-child(1){animation-delay:.02s}
+  .site-nav.open li:nth-child(2){animation-delay:.06s}
+  .site-nav.open li:nth-child(3){animation-delay:.10s}
+  .site-nav.open li:nth-child(4){animation-delay:.14s}
+  .site-nav.open li:nth-child(5){animation-delay:.18s}
+  .site-nav.open li:nth-child(6){animation-delay:.22s}
+  /* Keep toggle fixed and visible on mobile: top-right (avoid Safari bottom toolbar) */
+  .nav-toggle{
+    place-items:center; position:fixed; 
+    width:44px; height:44px; border-radius:999px; 
+    top:calc(6px + env(safe-area-inset-top));
+    right:calc(16px + env(safe-area-inset-right));
+    bottom:auto;
+    z-index:3000; background:transparent; 
+    box-shadow:none;
+    border:none;
+    pointer-events:auto;
+  }
 }
 
 @media (max-width: 600px){
   .hero-gallery img{width:100%}
+  /* Give more side padding on small screens and account for safe areas */
+  .container{padding-left:calc(24px + env(safe-area-inset-left)); padding-right:calc(24px + env(safe-area-inset-right))}
+}
+
+/* Fallbacks and failsafes */
+/* Ensure overlay is truly fullscreen even if media queries misbehave */
+.site-nav.open{
+  position:fixed !important; inset:0 !important; background:#ffffff !important; z-index:1500 !important;
+}
+@supports not (height: 100dvh){
+  .site-nav{height:100vh}
+  .site-nav.open{height:100vh}
+}
+
+/* Simple fade up animation */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(6px)}
+  to{opacity:1; transform:none}
 }
