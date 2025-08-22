@@ -1,12 +1,33 @@
 // Mobile nav toggle
 const navToggle = document.querySelector('.nav-toggle');
 let siteNav = document.querySelector('.site-nav');
+// Remember original placement to restore on desktop
+const originalParent = siteNav?.parentElement || null;
+const originalNext = siteNav ? siteNav.nextSibling : null;
 
-// Move overlay to <body> to avoid clipping by transformed/sticky parents
-if(siteNav && siteNav.parentElement !== document.body){
-  document.body.appendChild(siteNav);
-  // Re-query to ensure reference stays valid
-  siteNav = document.querySelector('.site-nav');
+function moveNavToBody(){
+  if(!siteNav) return;
+  if(siteNav.parentElement !== document.body){
+    document.body.appendChild(siteNav);
+  }
+}
+
+function restoreNavToHeader(){
+  if(!siteNav || !originalParent) return;
+  if(siteNav.parentElement === document.body){
+    if(originalNext && originalNext.parentNode === originalParent){
+      originalParent.insertBefore(siteNav, originalNext);
+    }else{
+      originalParent.appendChild(siteNav);
+    }
+  }
+}
+
+// Place nav based on current viewport: body on mobile for overlay, header on desktop
+if(window.innerWidth <= 960){
+  moveNavToBody();
+}else{
+  restoreNavToHeader();
 }
 // Overlay helpers must be global so all handlers can call them
 function applyOverlaySize(){
@@ -41,6 +62,10 @@ if(navToggle){
     // Keep toggle above everything
     navToggle.style.zIndex = '4000';
     if(open){
+      // Ensure on mobile the overlay sits on body
+      if(window.innerWidth <= 960){
+        moveNavToBody();
+      }
       applyOverlaySize();
       window.addEventListener('resize', onViewportChange);
       window.addEventListener('orientationchange', onViewportChange);
@@ -104,6 +129,11 @@ window.addEventListener('resize', ()=>{
     document.body.classList.remove('no-scroll');
     document.body.style.top = '';
     if(Number.isFinite(y)) window.scrollTo(0, y);
+    // Restore nav position back into header on desktop
+    restoreNavToHeader();
+  }else{
+    // On mobile ensure nav is attached to body for overlay
+    moveNavToBody();
   }
 });
 
