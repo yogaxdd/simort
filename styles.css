@@ -121,12 +121,14 @@ a{color:inherit; text-decoration:none}
 
 .products-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
 .product-card{background:var(--surface); border:1px solid rgba(201,162,122,0.35); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+.product-image{aspect-ratio:4/3; overflow:hidden}
+.product-image img{width:100%; height:100%; object-fit:cover; display:block}
 .product-body{padding:18px}
 .price{color:var(--primary); font-weight:700}
 .ingredients{display:flex; gap:8px; flex-wrap:wrap; padding:0; list-style:none; color:var(--muted); font-size:0.95rem}
 .card-ctas{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
 
-.benefits-grid{display:grid; grid-template-columns:repeat(3, minmax(240px, 1fr)); gap:16px; justify-content:center; max-width:980px; margin:0 auto}
+.benefits-grid{display:grid; grid-template-columns:repeat(4, minmax(220px, 1fr)); gap:20px; justify-content:center; max-width:1200px; margin:0 auto;}
 .benefits-grid article{background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:18px}
 
 /* Center title and disclaimer for benefits section */
@@ -146,9 +148,15 @@ a{color:inherit; text-decoration:none}
 .steps li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:14px}
 .step-num{width:36px; height:36px; border-radius:999px; background:#f2e7de; color:var(--primary); display:grid; place-items:center; font-weight:700}
 
-.testimonials{display:grid; grid-template-columns:repeat(3, minmax(240px, 1fr)); gap:16px; justify-content:center; max-width:980px; margin:0 auto}
-.testimonial{background:var(--surface); border:1px solid rgba(201,162,122,0.28); border-radius:var(--radius); padding:18px; font-style:normal}
-.testimonial blockquote{margin:0 0 10px}
+.testimonials{display:grid; grid-template-columns:repeat(3, minmax(240px, 1fr)); gap:20px; justify-content:center; max-width:1100px; margin:0 auto}
+.testimonial{background:var(--surface); border:1px solid rgba(201,162,122,0.2); border-radius:16px; padding:24px; font-style:normal; box-shadow:0 4px 20px rgba(114,75,58,0.08); transition:all 0.3s ease; position:relative; overflow:hidden}
+.testimonial:hover{transform:translateY(-4px); box-shadow:0 8px 30px rgba(114,75,58,0.15); border-color:rgba(201,162,122,0.4)}
+.testimonial::before{content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--primary), var(--accent)); opacity:0; transition:opacity 0.3s ease}
+.testimonial:hover::before{opacity:1}
+.testimonial blockquote{margin:0 0 16px; font-size:1.05rem; line-height:1.6; color:var(--text); position:relative}
+.instagram-link{display:inline-block; margin:12px 0 8px 0; padding:10px 18px; background:#6c4737; color:white; text-decoration:none; border-radius:10px; font-size:0.9rem; font-weight:600; transition:all 0.3s ease; box-shadow:0 3px 12px rgba(24,119,242,0.25); letter-spacing:0.3px}
+.instagram-link:hover{background:#d6b798; transform:translateY(-2px); box-shadow:0 6px 20px rgba(214,183,152,1); text-decoration:none}
+.testimonial figcaption{margin-top:8px; font-weight:600; color:var(--primary); font-size:0.95rem}
 
 /* Center testimonials title */
 #ulasan h2{text-align:center}
@@ -225,12 +233,20 @@ a{color:inherit; text-decoration:none}
   .hero-gallery{flex-wrap:wrap}
   .hero-gallery img{width:48%}
   .features-grid{grid-template-columns:repeat(2,1fr)}
-  .benefits-grid{grid-template-columns:repeat(2, minmax(240px, 1fr)); max-width:660px}
+  .benefits-grid{grid-template-columns:repeat(2, minmax(240px, 1fr)); max-width:660px; gap:14px;}
   .products-grid{grid-template-columns:1fr}
-  .benefits-grid{grid-template-columns:repeat(2,1fr)}
   .testimonials{grid-template-columns:1fr}
   .site-header{position:sticky; top:0; z-index:50;}
   /* Keep toggle inside header when menu closed; fixed only when open */
+}
+
+@media (max-width: 600px){
+  .hero-gallery{flex-direction:column; gap:14px; align-items:center;}
+  .hero-gallery img{width:100%;}
+  .benefits-grid{grid-template-columns:1fr; max-width:98vw; gap:12px;}
+  .benefits-grid article{padding:14px;}
+  /* Give more side padding on small screens and account for safe areas */
+  .container{padding-left:calc(24px + env(safe-area-inset-left)); padding-right:calc(24px + env(safe-area-inset-right))}
   .nav-toggle{
     display:grid; place-items:center; position:absolute; width:44px; height:44px; border-radius:999px; top:6px; right:16px; bottom:auto; z-index:4000 !important; background:transparent; box-shadow:none; border:none; pointer-events:auto; margin-top:0;
   }
