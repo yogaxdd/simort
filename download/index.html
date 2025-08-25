@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Simort App - Aplikasi Sinom Terbaik</title>
+    <meta name="description" content="Download aplikasi Simort untuk pengalaman terbaik menikmati sinom bubuk berkualitas premium">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .download-hero {
+            background: linear-gradient(135deg, #c9a27a 0%, #8b6f47 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        
+        .download-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .download-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: #3a2a23;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        
+        .download-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .app-features {
+            padding: 80px 20px;
+            background: #8b6f47;
+            color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .app-screenshots {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .screenshots-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .screenshot {
+            width: 200px;
+            height: 400px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .download-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            .screenshot {
+                width: 160px;
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header" style="background: #3a2a23; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="container">
+            <div class="header-content" style="padding: 16px 0;">
+                <a href="../" class="logo" style="font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none;">
+                    Simort App
+                </a>
+                <nav class="site-nav">
+                </nav>
+                <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Download Hero -->
+    <section class="download-hero">
+        <div class="app-icon">
+            <img src="../assets/images/logo-app.jpg" alt="Simort App" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
+        </div>
+        <h1>Simort App</h1>
+        <p>Simort App hadir untuk bikin aktivitasmu lebih praktis. Dengan fitur lengkap untuk memudahkan hidup sehari-hari, kapanpun!</p>
+        
+        <div class="download-buttons">
+            <!-- <a href="#" class="download-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                </svg>
+                Download for iOS
+            </a> -->
+            <a href="https://raw.githubusercontent.com/yogaxdd/simort/refs/heads/main/simort.apk" class="download-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.6,11.48 L19.44,8.3 C19.74,7.74 19.57,7.04 19.01,6.74 C18.45,6.44 17.75,6.61 17.45,7.17 L15.5,10.54 C14.58,10.05 13.54,9.79 12.5,9.79 C11.46,9.79 10.42,10.05 9.5,10.54 L7.55,7.17 C7.25,6.61 6.55,6.44 5.99,6.74 C5.43,7.04 5.26,7.74 5.56,8.3 L7.4,11.48 C5.28,12.82 4,15.04 4,17.5 L21,17.5 C21,15.04 19.72,12.82 17.6,11.48 M7,15.25 C7.69,15.25 8.25,14.69 8.25,14 C8.25,13.31 7.69,12.75 7,12.75 C6.31,12.75 5.75,13.31 5.75,14 C5.75,14.69 6.31,15.25 7,15.25 M17,15.25 C17.69,15.25 18.25,14.69 18.25,14 C18.25,13.31 17.69,12.75 17,12.75 C16.31,12.75 15.75,13.31 15.75,14 C15.75,14.69 16.31,15.25 17,15.25 Z"/>
+                </svg>
+                Download for Android
+            </a>
+        </div>
+        
+        <div style="margin-top: 32px; font-size: 0.9rem; opacity: 0.8;">
+            Latest Version v1.0.0 (14 MB) • Updated August 2025
+        </div>
+    </section>
+
+    <!-- App Features -->
+    <!-- <section class="app-features">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2.2rem;">Fitur Unggulan Aplikasi</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🛒</div>
+                    <h3>Belanja Mudah</h3>
+                    <p>Pesan sinom bubuk favorit dengan mudah langsung dari aplikasi</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>Notifikasi Promo</h3>
+                    <p>Dapatkan notifikasi promo dan diskon khusus untuk pengguna aplikasi</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Tracking Pesanan</h3>
+                    <p>Pantau status pesanan secara real-time dari proses hingga pengiriman</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pembayaran Aman</h3>
+                    <p>Berbagai metode pembayaran yang aman dan terpercaya</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Review & Rating</h3>
+                    <p>Baca review dari pengguna lain dan berikan rating produk</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Loyalty Points</h3>
+                    <p>Kumpulkan poin setiap pembelian dan tukar dengan hadiah menarik</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- App Screenshots -->
+    <!-- <section class="app-screenshots">
+        <div class="container">
+            <h2 style="margin-bottom: 24px; font-size: 2.2rem;">Preview Aplikasi</h2>
+            <p style="color: #666; margin-bottom: 40px;">Lihat tampilan aplikasi Simort yang user-friendly dan modern</p>
+            
+            <div class="screenshots-grid">
+                <div class="screenshot">
+                    Screenshot 1<br>
+                    <small>Home Screen</small>
+                </div>
+                <div class="screenshot">
+                    Screenshot 2<br>
+                    <small>Product List</small>
+                </div>
+                <div class="screenshot">
+                    Screenshot 3<br>
+                    <small>Order Tracking</small>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer style="background: #3a2a23; color: white; padding: 40px 20px; text-align: center;">
+        <div class="container">
+            <p>&copy; 2025 Simort. Semua hak cipta dilindungi.</p>
+            <p style="margin-top: 8px; opacity: 0.7;">Aplikasi tersedia untuk Android</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
