@@ -173,6 +173,97 @@ document.addEventListener('keydown', (e)=>{
   }
 });
 
+// Scroll-triggered animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+      // Add staggered delay for grid items
+      if (entry.target.parentElement.classList.contains('features-grid') ||
+          entry.target.parentElement.classList.contains('benefits-grid') ||
+          entry.target.parentElement.classList.contains('testimonials')) {
+        const siblings = Array.from(entry.target.parentElement.children);
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.animationDelay = `${index * 0.1}s`;
+      }
+    }
+  });
+}, observerOptions);
+
+// Observe all animatable elements
+function observeElements() {
+  const elementsToAnimate = [
+    '.feature-card',
+    '.product-card', 
+    '.testimonial',
+    '.benefits-grid article',
+    '.steps li',
+    '.faq details',
+    '.section h2',
+    '.hero-gallery img'
+  ];
+  
+  elementsToAnimate.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      observer.observe(el);
+    });
+  });
+}
+
+// Initialize animations when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', observeElements);
+} else {
+  observeElements();
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Enhanced button interactions
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    btn.style.transform = 'translateY(-3px) scale(1.02)';
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+  
+  btn.addEventListener('mousedown', () => {
+    btn.style.transform = 'translateY(-1px) scale(0.98)';
+  });
+  
+  btn.addEventListener('mouseup', () => {
+    btn.style.transform = 'translateY(-3px) scale(1.02)';
+  });
+});
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const hero = document.querySelector('.hero-media');
+  if (hero) {
+    hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+  }
+});
+
 // Enhance details for FAQ: close others when one opens
 const details = Array.from(document.querySelectorAll('#faq details'));
 for(const d of details){
